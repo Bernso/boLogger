@@ -5,8 +5,7 @@ description = "An advanced logging system used for clear understanding of your l
 authors = ["Bernso <Bernso@duck.com>"]
 license = "MIT" # Choose an appropriate license
 readme = "README.md" # The README file for PyPI
-homepage = "https://github.com/your/repo" # Optional
-repository = "https://github.com/your/repo" # Optional
+repository = "https://github.com/Bernso/boLogger" # Optional
 keywords = ["Logger", "Clear", "Colourfull"] # Optional
 
 [tool.poetry.dependencies]
