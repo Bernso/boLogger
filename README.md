@@ -8,6 +8,13 @@ This package is an advanced logging system that allows the user to create custom
 pip install boLogger --upgrade
 ```
 
+# Features
+
+- Colour
+- Create your own custom logger
+- Text wrapping (the text will never be on the same level as the logger info)
+- Easy use
+
 # Options
 
 ### Colours
@@ -34,7 +41,9 @@ CustomLog() includes everything in the Logging() class and more
     color: str, 
     bold: bool, 
     underlined: bool
-) # This is used to create deafults for the custom_log() method and 
+) # This is used to create deafults for the custom_log() method
+  # Meaning if the user wants to use the cutom_log() method 
+  # They only need to use the text parameter 
 
 .custom_log(
     text: str,  
@@ -45,8 +54,9 @@ CustomLog() includes everything in the Logging() class and more
 ) # If you already have a deafult set you will only need to enter the text param
   # But if you have not, you will need to enter all params
         
-
-.view_deafult() # method to view the current deafult settings
+# Method to view the current deafult settings
+# It returns it, not printing
+.view_deafult() 
 
 .add_color(colour) # your own colour code (must start with '\033[')
 ```
@@ -54,31 +64,38 @@ CustomLog() includes everything in the Logging() class and more
 # Example Usage
 
 ```py
-# Make sure to define the class
-mylogger = Logging()
-print(mylogger) # Explains the module
-mylogger.header("Header")
-mylogger.info("Info")
-mylogger.warning("Warning")
-mylogger.error("Error")
-mylogger.success("Success")
-mylogger.beans("Beans")
-mylogger.info("This is a very long log message that is going to spill over to the next line and needs to be properly indented for better readability.")
+### Logging()
+print(Logging()) # Explains the module
+
+.header("Header")
+
+.info("Info")
+
+.warning("Warning")
+
+.error("Error")
+
+.success("Success")
+
+.beans("Beans")
+
+.info("This is a very long log message that is going to spill over to the next line and needs to be properly indented for better readability.")
 
 
-customLogger = CustomLog()
-print(customLogger) # Explains the module
-customLogger.set_default(title="beansareyummy", color='Blue') # Bold and underlined are automatically set to false
-customLogger.view_deafult()
-customLogger.custom_log("custom")
-customLogger.info("custom")
+
+### CustomLog()
+# Explains the module
+print(CustomLog()) 
+
+# Bold and underlined are automatically set to false
+.set_default(title="beansareyummy", color='Blue') 
+
+.view_deafult()
+
+.custom_log("custom")
+
+.info("custom")
 ```
 
-# Features
-
-- Colour
-- Create your own custom logger
-- Text wrapping (the text will never be on the same level as the logger info)
-- Easy use
 
 
