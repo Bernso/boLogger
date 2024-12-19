@@ -65,6 +65,7 @@ CustomLog() includes everything in the Logging() class and more
 
 ```py
 ### Logging()
+
 print(Logging()) # Explains the module
 
 .header("Header")
@@ -84,6 +85,7 @@ print(Logging()) # Explains the module
 
 
 ### CustomLog()
+
 # Explains the module
 print(CustomLog()) 
 
