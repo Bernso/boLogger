@@ -62,7 +62,7 @@ class Logging:
 
             # Full prefix with color
             prefix = f"{colour}{time}{title}{dotString}:{end} "
-            continuation_prefix = ' ' * (self.len + 1)
+            continuation_prefix = ' ' * (self.len + 2) # 2 for the extra space to make the wrapped text look nicer
 
             # Break the text into lines
             wrapped_lines = []
