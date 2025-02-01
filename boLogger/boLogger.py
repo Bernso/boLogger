@@ -26,6 +26,16 @@ class Logging:
         # Default minimum length for formatting
         self.len = max(30, len)
         
+        self.logColourDeafults = {
+            "header": self.colors['BPurple'],
+            "info": self.colors['BCyan'],
+            "warning": self.colors['BYellow'],
+            "error": self.colors['BRed'],
+            "success": self.colors['BGreen'],
+            "beans": self.colors['BBlue'],
+            "input": self.colors['Yellow'],
+        }
+        
         
 
     def __str__(self):
@@ -36,7 +46,7 @@ class Logging:
         Your Value is: {self.len}
         """
     
-    def __creator(self, title, colour, text, bold=False, underlined=False):
+    def __creator(self, title, colour, text, bold=False, underlined=False, enditem='\n'):
         """
         underlined and bold are for the actual text, not for the header
         """
@@ -67,7 +77,7 @@ class Logging:
             # Break the text into lines
             wrapped_lines = []
             line_length = 160 - self.len  # Adjust line length to account for prefix
-            words = text.split()
+            words = text.split(' ')  # Only remove trailing spaces if necessary
             current_line = ""
 
             for word in words:
@@ -85,7 +95,7 @@ class Logging:
             for line in wrapped_lines[1:]:
                 formatted_text += f"\n{continuation_prefix}{line}"
 
-            print(formatted_text)
+            print(formatted_text, end=enditem)
             return True
         except Exception as e:
             return e
@@ -96,7 +106,7 @@ class Logging:
     def header(self, text, bold=False, underlined=False):
         self.__creator(
             title="header",
-            colour=self.colors['BPurple'], 
+            colour=self.logColourDeafults['header'], 
             text=text,
             bold=bold,
             underlined=underlined
@@ -105,7 +115,7 @@ class Logging:
     def info(self, text, bold=False, underlined=False):
         self.__creator(
             title="info", 
-            colour=self.colors['BCyan'], 
+            colour=self.logColourDeafults['info'], 
             text=text,
             bold=bold,
             underlined=underlined
@@ -114,7 +124,7 @@ class Logging:
     def warning(self, text, bold=False, underlined=False):
         self.__creator(
             title="warning", 
-            colour=self.colors['BYellow'], 
+            colour=self.logColourDeafults['warning'], 
             text=text,
             bold=bold,
             underlined=underlined
@@ -123,7 +133,7 @@ class Logging:
     def error(self, text, bold=False, underlined=False):
         self.__creator(
             title="error", 
-            colour=self.colors['BRed'], 
+            colour=self.logColourDeafults['error'], 
             text=text,
             bold=bold,
             underlined=underlined
@@ -132,7 +142,7 @@ class Logging:
     def success(self, text, bold=False, underlined=False):
         self.__creator(
             title="success", 
-            colour=self.colors['BGreen'], 
+            colour=self.logColourDeafults['success'], 
             text=text,
             bold=bold,
             underlined=underlined
@@ -141,11 +151,46 @@ class Logging:
     def beans(self, text, bold=False, underlined=False):
         self.__creator(
             title='beans',
-            colour=self.colors['BBlue'],
+            colour=self.logColourDeafults['beans'],
             text=text,
             bold=bold,
             underlined=underlined
         )
+    
+    def input(self, text, bold=False, underlined=False):
+        self.__creator(
+            title='input',
+            colour=self.logColourDeafults['input'],
+            text=text,
+            bold=bold,
+            underlined=underlined,
+            enditem='' # Make the end of the print empty to be able to input on the same line 
+        )
+        choice = input() # I don't know how this still works lmao
+        return choice
+    
+    def set_colour(self, method: str, colour: str):
+        """
+        Lets you change the colour for an already existing method
+        """
+        if colour not in self.colors.keys():
+            if colour not in self.colors.values():
+                self.error("Invalid colour name/code")
+                self.info(f"All of the deafult colours names: {', '.join(self.colors.keys())}")
+                self.info(f"All of the deafult colours codes: {self.colors.values()}")
+                return
+        
+        methods = ['info', 'success', 'error', 'warning', 'beans', 'input', 'header']
+        if method.lower() not in methods:
+            self.error("Invalid method name")
+            self.info(f"All method names: {''.join(methods)}")
+            return
+        
+        if not colour.startswith('\033['):
+            if colour in self.colors.keys():
+                colour = self.colors[colour]
+            
+        self.logColourDeafults[method] = colour
 
 
 
@@ -175,6 +220,7 @@ class CustomLog(Logging):
         
         if not name or not code.startswith('\033['):
             self.error("Invalid color name or code. Ensure the code is an ANSI escape sequence.")
+            pass
         self.colors[name] = code
 
     def custom_log(
@@ -212,7 +258,7 @@ class CustomLog(Logging):
             self.error(f"If that is the case your error is: {e}")
 
 
-    def set_default(
+    def set_default_custom(
             self, 
             title: str, 
             color: str, 
@@ -273,13 +319,17 @@ if __name__ == '__main__':
     mylogger.success("Success")
     mylogger.beans("Beans")
     mylogger.info("This is a very long log message that is going to spill over to the next line and needs to be properly indented for better readability.")
-
+    mylogger.info("This is info")
+    mylogger.set_colour('info', 'BBlack')
+    mylogger.info("This is the new info")
+    num = mylogger.input("This is an input, please enter a number: ")
+    mylogger.info(f"The user has entered: {num}")
     
     customLogger = CustomLog()
     print(customLogger)
-    customLogger.set_default(title="beansareyummy", color='Blue')
+    customLogger.set_default_custom(title="beansareyummy", color='Blue')
     customLogger.view_deafult()
-    customLogger.custom_log("custom")
-    customLogger.info("custom")
+    customLogger.custom_log("This is a custom log")
+    customLogger.info("The deafult length has been adjusted to suit the longest log")
 
-
+    

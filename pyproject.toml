@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "boLogger" # Use a unique name
-version = "0.1.3.1" # Start with a low version number
+version = "0.1.4.0" # Start with a low version number
 description = "An advanced logging system used for clear understanding of your logs."
 authors = ["Bernso <Bernso@duck.com>"]
 license = "MIT" # Choose an appropriate license
 readme = "README.md" # The README file for PyPI
 repository = "https://github.com/Bernso/boLogger" # Optional
-keywords = ["Logger", "Clear", "Colourfull"] # Optional
+keywords = ["Logger", "Clear", "Colourfull", "Inputs"] # Optional
 
 [tool.poetry.dependencies]
 python = "^3.8" # Specify compatible Python versions

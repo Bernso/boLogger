@@ -2,7 +2,7 @@
 
 This package is an advanced logging system that allows the user to create custom and preset logs, with colour.
 
-# Installation
+# <strong>Installation</strong>
 
 ```bash
 pip install boLogger --upgrade
@@ -17,26 +17,57 @@ pip install boLogger --upgrade
 
 # Options
 
-### Colours
+## Colours
 
-Black, Red, Green, Yellow, Blue, Purple, Cyan, White, BBlack, BRed, BGreen, BYellow, BBlue, BPurple, BCyan, BWhite
-(B stands for bright)
+- Black
+- Red
+- Green
+- Yello
+- Blue
+- Purple
+- Cyan
+- White
+- BBlack
+- BRed
+- BGree
+- BYellow
+- BBlue
+- BPurple
+- BCyan
+- BWhite
 
-### Options for Logging()
+<br>
+<strong>
+B stands for bright
+</strong>
+
+## Options for Logging()
 
 ```py
 .header(text)
+
 .info(text)
+
 .warning(text)
+
 .error(text)
+
 .success(text)
+
+.input(text)
+
+.set_colour(
+  method, # one of the basic logging names  e.g. 'info'
+  colour # a valid colour code or colour name
+)
 ```
 
-### Options for CustomLog()
+## Options for CustomLog()
 
 CustomLog() includes everything in the Logging() class and more
+
 ```py
-.set_deafult(
+.set_default_custom(
     title: str, 
     color: str, 
     bold: bool, 
@@ -66,38 +97,43 @@ CustomLog() includes everything in the Logging() class and more
 ```py
 ### Logging()
 
-print(Logging()) # Explains the module
+myLogger = Logging()
 
-.header("Header")
+# Explains the module
+print(myLogger) 
 
-.info("Info")
+myLogger.header("Header")
 
-.warning("Warning")
+myLogger.info("Info")
 
-.error("Error")
+myLogger.warning("Warning")
 
-.success("Success")
+myLogger.error("Error")
 
-.beans("Beans")
+myLogger.success("Success")
 
-.info("This is a very long log message that is going to spill over to the next line and needs to be properly indented for better readability.")
+myLogger.beans("Beans")
 
+myLogger.info("This is a very long log message that is going to spill over to the next line and needs to be properly indented for better readability.")
+
+# Functions as a normal input but has the logging decorations
+user_choice = myLogger.input("This is a re-designed input") 
+myLogger.info(f"The user inputted: {user_choice}")
 
 
 ### CustomLog()
 
+myLogger = CustomLog()
+
 # Explains the module
-print(CustomLog()) 
+print(myLogger) 
 
 # Bold and underlined are automatically set to false
-.set_default(title="beansareyummy", color='Blue') 
+myLogger.set_default(title="beansareyummy", color='Blue') 
 
-.view_deafult()
+myLogger.view_deafult()
 
-.custom_log("custom")
+myLogger.custom_log("custom")
 
-.info("custom")
+myLogger.info("custom")
 ```
-
-
-
