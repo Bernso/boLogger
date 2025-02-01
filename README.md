@@ -22,7 +22,7 @@ pip install boLogger --upgrade
 - Black
 - Red
 - Green
-- Yello
+- Yellow
 - Blue
 - Purple
 - Cyan
