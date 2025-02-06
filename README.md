@@ -150,7 +150,7 @@ myLogger.info("custom")
 ## Example
 ![Example Output](https://raw.githubusercontent.com/Bernso/boLogger/refs/heads/main/images/exampleUse.png)
 
-# Code
+### Code
 ```py
 # Make sure to define the class
 mylogger = Logging()
