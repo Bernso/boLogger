@@ -12,7 +12,9 @@ pip install boLogger --upgrade
 
 - Colour
 - Create your own custom logger
-- Text wrapping (the text will never be on the same level as the logger info)
+- Text wrapping
+  - the text will never be on the same level as the logger info
+  - "\n" will now triiger a text wrap aswell now, before they where mysteriously removed from existence
 - Easy use
 
 # Options
@@ -44,6 +46,11 @@ B stands for bright
 ## Options for Logging()
 
 ```py
+#each of these have 3 args:
+#- text (str)
+#- bold (bool)
+#- unnderlined (bool)
+
 .header(text)
 
 .info(text)
@@ -53,6 +60,8 @@ B stands for bright
 .error(text)
 
 .success(text)
+
+.starting(text)
 
 .input(text)
 
@@ -112,7 +121,7 @@ myLogger.error("Error")
 
 myLogger.success("Success")
 
-myLogger.beans("Beans")
+myLogger.starting("Starting")
 
 myLogger.info("This is a very long log message that is going to spill over to the next line and needs to be properly indented for better readability.")
 

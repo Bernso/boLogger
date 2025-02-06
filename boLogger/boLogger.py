@@ -32,8 +32,8 @@ class Logging:
             "warning": self.colors['BYellow'],
             "error": self.colors['BRed'],
             "success": self.colors['BGreen'],
-            "beans": self.colors['BBlue'],
             "input": self.colors['Yellow'],
+            "starting": self.colors['BBlue']
         }
         
         
@@ -77,6 +77,7 @@ class Logging:
             # Break the text into lines
             wrapped_lines = []
             line_length = 160 - self.len  # Adjust line length to account for prefix
+            text = text.replace('\n', (' ' * line_length))
             words = text.split(' ')  # Only remove trailing spaces if necessary
             current_line = ""
 
@@ -148,15 +149,6 @@ class Logging:
             underlined=underlined
         )
     
-    def beans(self, text, bold=False, underlined=False):
-        self.__creator(
-            title='beans',
-            colour=self.logColourDeafults['beans'],
-            text=text,
-            bold=bold,
-            underlined=underlined
-        )
-    
     def input(self, text, bold=False, underlined=False):
         self.__creator(
             title='input',
@@ -169,6 +161,16 @@ class Logging:
         choice = input() # I don't know how this still works lmao
         return choice
     
+    def starting(self, text, bold=False, underlined=False):
+        self.__creator(
+            title="starting",
+            colour=self.logColourDeafults['starting'],
+            text=text,
+            bold=bold,
+            underlined=underlined
+        )
+        
+    
     def set_colour(self, method: str, colour: str):
         """
         Lets you change the colour for an already existing method
@@ -180,7 +182,7 @@ class Logging:
                 self.info(f"All of the deafult colours codes: {self.colors.values()}")
                 return
         
-        methods = ['info', 'success', 'error', 'warning', 'beans', 'input', 'header']
+        methods = ['info', 'success', 'error', 'warning', 'input', 'header', 'starting']
         if method.lower() not in methods:
             self.error("Invalid method name")
             self.info(f"All method names: {''.join(methods)}")
@@ -312,19 +314,20 @@ if __name__ == '__main__':
     # Make sure to define the class
     mylogger = Logging()
     print(mylogger)
+    
     mylogger.header("Header")
     mylogger.info("Info")
     mylogger.warning("Warning")
     mylogger.error("Error")
     mylogger.success("Success")
-    mylogger.beans("Beans")
     mylogger.info("This is a very long log message that is going to spill over to the next line and needs to be properly indented for better readability.")
     mylogger.info("This is info")
     mylogger.set_colour('info', 'BBlack')
     mylogger.info("This is the new info")
+    mylogger.starting("This is a new proccess starting")
     num = mylogger.input("This is an input, please enter a number: ")
     mylogger.info(f"The user has entered: {num}")
-    
+
     customLogger = CustomLog()
     print(customLogger)
     customLogger.set_default_custom(title="beansareyummy", color='Blue')
