@@ -148,7 +148,7 @@ myLogger.info("custom")
 ```
 
 ## Example
-![Example Output]([http://url/to/img.png](https://raw.githubusercontent.com/Bernso/boLogger/refs/heads/main/images/exampleUse.png))
+![Example Output](https://raw.githubusercontent.com/Bernso/boLogger/refs/heads/main/images/exampleUse.png)
 
 # Code
 ```py
