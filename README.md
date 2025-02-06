@@ -146,3 +146,35 @@ myLogger.custom_log("custom")
 
 myLogger.info("custom")
 ```
+
+## Example
+![Example Output]([http://url/to/img.png](https://raw.githubusercontent.com/Bernso/boLogger/refs/heads/main/images/exampleUse.png))
+
+# Code
+```py
+# Make sure to define the class
+mylogger = Logging()
+print(mylogger)
+    
+mylogger.header("Header")
+mylogger.info("Info")
+mylogger.warning("Warning")
+mylogger.error("Error")
+mylogger.success("Success")
+mylogger.info("This is a very long log message that is going to spill over to the next line and needs to be properly indented for better readability.")
+mylogger.info("This is info")
+mylogger.set_colour('info', 'BBlack')
+mylogger.info("This is the new info")
+mylogger.starting("This is a new proccess starting")
+num = mylogger.input("This is an input, please enter a number: ")
+mylogger.info(f"The user has entered: {num}")
+
+
+customLogger = CustomLog()
+print(customLogger)
+
+customLogger.set_default_custom(title="beansareyummy", color='Blue')
+customLogger.view_deafult()
+customLogger.custom_log("This is a custom log")
+customLogger.info("The deafult length has been adjusted to suit the longest log")
+```
