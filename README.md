@@ -1,6 +1,6 @@
 # What is this package?
 
-This package is an advanced logging system that allows the user to create custom and preset logs, with colour.
+This package is a terrible logging system that allows the user to create custom and preset logs, with colour.
 
 # <strong>Installation</strong>
 
